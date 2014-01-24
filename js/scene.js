@@ -25,8 +25,10 @@ var CreateShadowsTestScene = function (engine) {
     // Torus
     var torus = BABYLON.Mesh.CreateTorus("torus", 8, 2, 32, scene, false);
     torus.position.y = 6.0;
+    torus.isVisible=false;
     var torus2 = BABYLON.Mesh.CreateTorus("torus2", 4, 1, 32, scene, false);
     torus2.position.y = 6.0;
+     //torus.isVisible=false;
     
     // Shadows
     var shadowGenerator = new BABYLON.ShadowGenerator(512, light);
