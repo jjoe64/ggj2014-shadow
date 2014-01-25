@@ -1,37 +1,44 @@
-var CreatePickScene = function (engine) {
-    var scene = new BABYLON.Scene(engine);
+"use strict";
+
+var PickScene = function() {
+	this.setupEngine();
+	this.setupScene();
+};
+PickScene.prototype.setupEngine = function() {
+	// Get the Canvas element from our HTML below
+	this.canvas = document.getElementById("pickCanvas");
+
+	// Load BABYLON 3D engine and set the root directory
+	this.engine = new BABYLON.Engine(this.canvas, true);
+
+	/* BABYLON.SceneLoader.Load("assets/", "huskchair.babylon", engine, function (newScene) {
+		         // Wait for textures and shaders to be ready
+		         newScene.executeWhenReady(function () {
+		             // Attach camera to canvas inputs
+		             newScene.activeCamera.attachControl(canvas);
+
+		             // Once the scene is loaded, just register a render loop to render it
+		             engine.runRenderLoop(function() {
+		                 newScene.render();
+		             });
+		         });
+		     }, function (progress) {
+		         // To do: give progress feedback to user
+		     });
+	*/        
+};
+PickScene.prototype.setupScene = function() {
+    var scene = new BABYLON.Scene(this.engine);
     scene.clearColor = new BABYLON.Color3(0.7, 0.7, 0.7);
+    
     var camera = new BABYLON.ArcRotateCamera("Camera", 0, 0, 0, BABYLON.Vector3.Zero(), scene);
+    camera.setPosition(new BABYLON.Vector3(6, 0, 0));
+    //camera.fov = 2;
     
 	var light0 = new BABYLON.HemisphericLight("Hemi0", new BABYLON.Vector3(0, 10, 0), scene);
 	light0.diffuse = new BABYLON.Color3(1, 1, 1);
 	light0.specular = new BABYLON.Color3(1, 0, 0);
 	light0.groundColor = new BABYLON.Color3(0, 0, 0);
-
-    camera.setPosition(new BABYLON.Vector3(6, 0, 0));
-    //camera.fov = 2;
-    
-    // palme test
-	BABYLON.SceneLoader.ImportMesh(AllObjects[0].id, "assets/", "huskchair.babylon", scene, function (newMeshes, particleSystems) {
-	newMeshes[0].castShadows=false;
-		newMeshes[0].position.z = 10;
-		newMeshes[0].scaling.x *= AllObjects[0].pickScaleFactor;
-		newMeshes[0].scaling.y *= AllObjects[0].pickScaleFactor;
-		newMeshes[0].scaling.z *= AllObjects[0].pickScaleFactor;
-	});
-    
-	BABYLON.SceneLoader.ImportMesh(AllObjects[0].id, "assets/", "huskchair.babylon", scene, function (newMeshes, particleSystems) {
-		newMeshes[0].scaling.x *= AllObjects[0].pickScaleFactor;
-		newMeshes[0].scaling.y *= AllObjects[0].pickScaleFactor;
-		newMeshes[0].scaling.z *= AllObjects[0].pickScaleFactor;
-	});
-    
-	BABYLON.SceneLoader.ImportMesh(AllObjects[0].id, "assets/", "huskchair.babylon", scene, function (newMeshes, particleSystems) {
-		newMeshes[0].position.z = -10;
-		newMeshes[0].scaling.x *= AllObjects[0].pickScaleFactor;
-		newMeshes[0].scaling.y *= AllObjects[0].pickScaleFactor;
-		newMeshes[0].scaling.z *= AllObjects[0].pickScaleFactor;
-	});
     
     var beforeRenderFunction = function () {
         // Camera
@@ -55,6 +62,45 @@ var CreatePickScene = function (engine) {
         //torus.rotation.z += 0.02;
     });
     
-    return scene;
+	// Attach the camera to the scene
+	scene.activeCamera.attachControl(this.canvas);
+
+
+	// Once the scene is loaded, just register a render loop to render it
+	this.engine.runRenderLoop(function () {
+		scene.render();
+	});
+	this.scene = scene;
+};
+PickScene.prototype.displayPicks = function(series) {
+	if (this._currentMeshes) {
+		for (var i=0; i<this._currentMeshes.length; i++) {
+			this._currentMeshes[i].isVisible = false;
+		}
+	}
+	var _this = this;
+	this._currentMeshes = [];
+	BABYLON.SceneLoader.ImportMesh(series[0].id, "assets/models/", series[0].file, this.scene, function (newMeshes, particleSystems) {
+		_this._currentMeshes.push(newMeshes[0]);
+		newMeshes[0].position.z = 10;
+		newMeshes[0].scaling.x *= AllObjects[0].pickScaleFactor;
+		newMeshes[0].scaling.y *= AllObjects[0].pickScaleFactor;
+		newMeshes[0].scaling.z *= AllObjects[0].pickScaleFactor;
+	});
+    
+	BABYLON.SceneLoader.ImportMesh(series[1].id, "assets/models/", series[1].file, this.scene, function (newMeshes, particleSystems) {
+		_this._currentMeshes.push(newMeshes[0]);
+		newMeshes[0].scaling.x *= AllObjects[0].pickScaleFactor;
+		newMeshes[0].scaling.y *= AllObjects[0].pickScaleFactor;
+		newMeshes[0].scaling.z *= AllObjects[0].pickScaleFactor;
+	});
+    
+	BABYLON.SceneLoader.ImportMesh(series[2].id, "assets/models/", series[2].file, this.scene, function (newMeshes, particleSystems) {
+		newMeshes[0].position.z = -10;
+		_this._currentMeshes.push(newMeshes[0]);
+		newMeshes[0].scaling.x *= AllObjects[0].pickScaleFactor;
+		newMeshes[0].scaling.y *= AllObjects[0].pickScaleFactor;
+		newMeshes[0].scaling.z *= AllObjects[0].pickScaleFactor;
+	});
 };
 
