@@ -1,16 +1,19 @@
 var CreatePickScene = function (engine) {
     var scene = new BABYLON.Scene(engine);
+    scene.clearColor = new BABYLON.Color3(0.7, 0.7, 0.7);
     var camera = new BABYLON.ArcRotateCamera("Camera", 0, 0, 0, BABYLON.Vector3.Zero(), scene);
-    var light = new BABYLON.DirectionalLight("dir01", new BABYLON.Vector3(0, -1, -0.2), scene);
-    light.position = new BABYLON.Vector3(0, 30, 0);
+    
+	var light0 = new BABYLON.HemisphericLight("Hemi0", new BABYLON.Vector3(0, 10, 0), scene);
+	light0.diffuse = new BABYLON.Color3(1, 1, 1);
+	light0.specular = new BABYLON.Color3(1, 0, 0);
+	light0.groundColor = new BABYLON.Color3(0, 0, 0);
 
-    light.intensity = 1.0;
-
-    camera.setPosition(new BABYLON.Vector3(10, 0, 0));
+    camera.setPosition(new BABYLON.Vector3(6, 0, 0));
     //camera.fov = 2;
     
     // palme test
 	BABYLON.SceneLoader.ImportMesh(AllObjects[0].id, "assets/", "huskchair.babylon", scene, function (newMeshes, particleSystems) {
+	newMeshes[0].castShadows=false;
 		newMeshes[0].position.z = 10;
 		newMeshes[0].scaling.x *= AllObjects[0].pickScaleFactor;
 		newMeshes[0].scaling.y *= AllObjects[0].pickScaleFactor;
