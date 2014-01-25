@@ -46,8 +46,6 @@
 
             <div class="choicesWrapper">
 
-                
-
                 <canvas id="pickCanvas"></canvas>
             
                 <div class="choices">
@@ -58,24 +56,18 @@
             
             </div>
 
-
         </div>
 
-        <div id="gameUI">
+    </div>
 
-            <div id="gameRules">Game description bla</div>
+    <div class="alert alert-success alert-dismissable winfail win" id="win">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        <strong>Correct!</strong> You saw it for what it is. Good boy!
+    </div>
 
-            <div id="buttonWrapper">
-
-                <button type="button" class="btn btn-default choice"><img src="assets/models/models_trees_01_arvore.jpeg" /></button>
-
-                <button type="button" class="btn btn-default choice"><img src="assets/models/models_trees_01_arvore.jpeg" /></button>
-
-                <button type="button" class="btn btn-default choice"><img src="assets/models/models_trees_01_arvore.jpeg" /></button>
-
-            </div>
-        </div>
-
+    <div class="alert alert-danger alert-dismissable winfail fail" id="fail">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        <strong>Wrong!</strong> Maybe you saw too much of yourself. Go meditate on that.
     </div>
 
     <script src="libs/jquery-2.1.0.min.js"></script>
@@ -88,9 +80,17 @@
     <script type="text/javascript" src="js/main.js"></script>
     
     <script>
-        $(".choice1").click(function() {quizController.choose(1);});
-        $(".choice2").click(function() {quizController.choose(2);});
-        $(".choice3").click(function() {quizController.choose(3);});
+        $(document).ready(
+            function() {
+
+            $(".choice1").click(function() {quizController.choose(1);});
+            $(".choice2").click(function() {quizController.choose(2);});
+            $(".choice3").click(function() {quizController.choose(3);});
+
+
+
+        });
+
     </script>
 </body>
 

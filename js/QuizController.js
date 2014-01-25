@@ -13,15 +13,19 @@ QuizController.prototype.choose = function(number) {
 	if (this._currentQuiz) {
 		if (this._currentQuiz._shadowIdx === number-1) {
 			// right
-			alert("YES, next quiz loading ...");
+			$(".win").clone().appendTo("body").show();
+			//alert("YES, next quiz loading ...");
 			this.nextQuiz();
 		} else {
-			alert("WROOOONG, try again");
+			$(".fail").clone().appendTo("body").show();
+			//alert("WROOOONG, try again");
 		}
 	}
 };
 
 QuizController.prototype.nextQuiz = function() {
+	
+
 	// choose random similar objects
 	var seriesIdx = SimilarObjects[randomNumber(SimilarObjects.length-1)];
 	var series = [AllObjects[seriesIdx[0]], AllObjects[seriesIdx[1]], AllObjects[seriesIdx[2]]];
@@ -43,4 +47,9 @@ QuizController.prototype.displayQuiz = function(quiz) {
 	// display 3 picks
 	pickScene.displayPicks.call(pickScene, quiz._series);
 };
+
+function correctAnswer() {
+    alert("geht!");
+    $("#win").show();
+}
 
