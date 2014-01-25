@@ -50,24 +50,24 @@ var AllObjects = [
 		offset: [0, 0, 0],
 		pickOffset: [0, -5, 0]
 	}, {
-		id: 'chair01',
-		file: "chairs.babylon",
+		id: 'animal01',
+		file: "animals.babylon",
 		name: 'Chair',
 		scaleFactor: 7,
 		pickScaleFactor: 2,
 		offset: [0, 0, 0],
 		pickOffset: [0, 0, 0]
 	}, {
-		id: 'chair02',
-		file: "chairs.babylon",
+		id: 'animal02',
+		file: "animals.babylon",
 		name: 'Chair',
 		scaleFactor: 7,
 		pickScaleFactor: 2,
 		offset: [0, 0, 0],
 		pickOffset: [0, 0, 0]
 	}, {
-		id: 'chair03',
-		file: "chairs.babylon",
+		id: 'animal03',
+		file: "animals.babylon",
 		name: 'Chair',
 		scaleFactor: 7,
 		pickScaleFactor: 2,
