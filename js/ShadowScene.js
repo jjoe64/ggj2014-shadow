@@ -85,7 +85,10 @@ ShadowScene.prototype.displayShadow = function(obj) {
 	var _this = this;
 	BABYLON.SceneLoader.ImportMesh(obj.id, "assets/models/", obj.file, this.scene, function (newMeshes, particleSystems) {
 		_this._currentMesh = newMeshes[0];
-		newMeshes[0].position.y = 20.0;
+		newMeshes[0].position.x = obj.offset[0];
+		newMeshes[0].position.y = 20.0 + obj.offset[1];
+		newMeshes[0].position.z = obj.offset[2];
+		
 		newMeshes[0].scaling.x *= obj.scaleFactor;
 		newMeshes[0].scaling.y *= obj.scaleFactor;
 		newMeshes[0].scaling.z *= obj.scaleFactor;

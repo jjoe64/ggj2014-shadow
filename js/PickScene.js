@@ -32,7 +32,7 @@ PickScene.prototype.setupScene = function() {
     scene.clearColor = new BABYLON.Color3(0.7, 0.7, 0.7);
     
     var camera = new BABYLON.ArcRotateCamera("Camera", 0, 0, 0, BABYLON.Vector3.Zero(), scene);
-    camera.setPosition(new BABYLON.Vector3(5, 0, 0));
+    camera.setPosition(new BABYLON.Vector3(15, 0, 0));
     __camera = camera;
     //camera.fov = 2;
     
@@ -84,25 +84,35 @@ PickScene.prototype.displayPicks = function(series) {
 	this._currentMeshes = [];
 	BABYLON.SceneLoader.ImportMesh(series[0].id, "assets/models/", series[0].file, this.scene, function (newMeshes, particleSystems) {
 		_this._currentMeshes.push(newMeshes[0]);
-		newMeshes[0].position.z = -10;
-		newMeshes[0].scaling.x *= AllObjects[0].pickScaleFactor;
-		newMeshes[0].scaling.y *= AllObjects[0].pickScaleFactor;
-		newMeshes[0].scaling.z *= AllObjects[0].pickScaleFactor;
+		newMeshes[0].position.x = series[0].pickOffset[0];
+		newMeshes[0].position.y = series[0].pickOffset[1];
+		newMeshes[0].position.z = -20 + series[0].pickOffset[2];
+		
+		newMeshes[0].scaling.x *= series[0].pickScaleFactor;
+		newMeshes[0].scaling.y *= series[0].pickScaleFactor;
+		newMeshes[0].scaling.z *= series[0].pickScaleFactor;
 	});
     
 	BABYLON.SceneLoader.ImportMesh(series[1].id, "assets/models/", series[1].file, this.scene, function (newMeshes, particleSystems) {
 		_this._currentMeshes.push(newMeshes[0]);
-		newMeshes[0].scaling.x *= AllObjects[0].pickScaleFactor;
-		newMeshes[0].scaling.y *= AllObjects[0].pickScaleFactor;
-		newMeshes[0].scaling.z *= AllObjects[0].pickScaleFactor;
+		newMeshes[0].position.x = series[1].pickOffset[0];
+		newMeshes[0].position.y = series[1].pickOffset[1];
+		newMeshes[0].position.z = series[1].pickOffset[2];
+
+		newMeshes[0].scaling.x *= series[1].pickScaleFactor;
+		newMeshes[0].scaling.y *= series[1].pickScaleFactor;
+		newMeshes[0].scaling.z *= series[1].pickScaleFactor;
 	});
     
 	BABYLON.SceneLoader.ImportMesh(series[2].id, "assets/models/", series[2].file, this.scene, function (newMeshes, particleSystems) {
-		newMeshes[0].position.z = 10;
 		_this._currentMeshes.push(newMeshes[0]);
-		newMeshes[0].scaling.x *= AllObjects[0].pickScaleFactor;
-		newMeshes[0].scaling.y *= AllObjects[0].pickScaleFactor;
-		newMeshes[0].scaling.z *= AllObjects[0].pickScaleFactor;
+		newMeshes[0].position.x = series[2].pickOffset[0];
+		newMeshes[0].position.y = series[2].pickOffset[1];
+		newMeshes[0].position.z = 20 + series[2].pickOffset[2];
+
+		newMeshes[0].scaling.x *= series[2].pickScaleFactor;
+		newMeshes[0].scaling.y *= series[2].pickScaleFactor;
+		newMeshes[0].scaling.z *= series[2].pickScaleFactor;
 	});
 };
 
