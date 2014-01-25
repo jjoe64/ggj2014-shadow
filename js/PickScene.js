@@ -32,7 +32,8 @@ PickScene.prototype.setupScene = function() {
     scene.clearColor = new BABYLON.Color3(0.7, 0.7, 0.7);
     
     var camera = new BABYLON.ArcRotateCamera("Camera", 0, 0, 0, BABYLON.Vector3.Zero(), scene);
-    camera.setPosition(new BABYLON.Vector3(6, 0, 0));
+    camera.setPosition(new BABYLON.Vector3(5, 0, 0));
+    __camera = camera;
     //camera.fov = 2;
     
 	var light0 = new BABYLON.HemisphericLight("Hemi0", new BABYLON.Vector3(0, 10, 0), scene);
@@ -40,6 +41,7 @@ PickScene.prototype.setupScene = function() {
 	light0.specular = new BABYLON.Color3(1, 0, 0);
 	light0.groundColor = new BABYLON.Color3(0, 0, 0);
     
+    /*
     var beforeRenderFunction = function () {
         // Camera
         if (camera.beta < 0.1)
@@ -55,7 +57,7 @@ PickScene.prototype.setupScene = function() {
     };
 
     scene.registerBeforeRender(beforeRenderFunction);
-    
+    */
     // Animations
     scene.registerBeforeRender(function () {
         //torus.rotation.x += 0.01;
@@ -82,7 +84,7 @@ PickScene.prototype.displayPicks = function(series) {
 	this._currentMeshes = [];
 	BABYLON.SceneLoader.ImportMesh(series[0].id, "assets/models/", series[0].file, this.scene, function (newMeshes, particleSystems) {
 		_this._currentMeshes.push(newMeshes[0]);
-		newMeshes[0].position.z = 10;
+		newMeshes[0].position.z = -10;
 		newMeshes[0].scaling.x *= AllObjects[0].pickScaleFactor;
 		newMeshes[0].scaling.y *= AllObjects[0].pickScaleFactor;
 		newMeshes[0].scaling.z *= AllObjects[0].pickScaleFactor;
@@ -96,7 +98,7 @@ PickScene.prototype.displayPicks = function(series) {
 	});
     
 	BABYLON.SceneLoader.ImportMesh(series[2].id, "assets/models/", series[2].file, this.scene, function (newMeshes, particleSystems) {
-		newMeshes[0].position.z = -10;
+		newMeshes[0].position.z = 10;
 		_this._currentMeshes.push(newMeshes[0]);
 		newMeshes[0].scaling.x *= AllObjects[0].pickScaleFactor;
 		newMeshes[0].scaling.y *= AllObjects[0].pickScaleFactor;

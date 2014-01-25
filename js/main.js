@@ -1,5 +1,5 @@
 "use strict";
-
+var __camera;
 // init 3d
 var shadowScene = new ShadowScene();
 var pickScene = new PickScene();
