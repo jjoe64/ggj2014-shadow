@@ -1,4 +1,4 @@
-html, body, div {
+html, body {
 	width: 100%;
 	height: 100%;
 	padding: 0;
@@ -7,10 +7,20 @@ html, body, div {
 }
 #shadowCanvas {
 	width: 100%;
-	height: 70%;
+	height: 250px;
 }
 #pickCanvas {
 	width: 100%;
-	height: 30%;
+	height: 50%;
 }
 
+#header,
+#gameUI {
+	margin: 20px;
+}
+
+#uiWrapper {
+	margin: 50px;
+	outline: 1px solid grey;
+
+}

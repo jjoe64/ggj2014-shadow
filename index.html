@@ -1,5 +1,5 @@
 ﻿<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html lang="en">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title>GGJ 2014</title>
@@ -13,11 +13,10 @@
     <script src="js/PickCanvas.js"></script>
     <script src="js/PickScene.js"></script>
 
-    <!-- Bootstrap from CDN -->
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap-theme.min.css">
-    <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
-        
+    <!-- Bootstrap CSS from CDN -->
+    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap-theme.min.css">
+
     <!-- CSS -->
     <link rel="stylesheet" type="test/css" href="style.css" />
 
@@ -25,16 +24,38 @@
 
 <!-- BODY -->
 <!-- ------ -->
+
 <body>
 
-    <div id="rootDiv">
+    <div id="uiWrapper">
 
-        <!-- Main Canvas -->
-        <canvas id="shadowCanvas"></canvas>
-        <canvas id="pickCanvas"></canvas>
+        <div id="header">
+            <h1>GGJ 2014 - Shadow Quiz 3D!</h1>
+        </div>
+
+        <div id="gameViewport">
+
+            <!-- Main Canvas -->
+            <canvas id="shadowCanvas"></canvas>
+            <canvas id="pickCanvas"></canvas>
+
+        </div>
+
+        <div id="gameUI">
+            UI Elements will be here
+
+            <button type="button" class="btn btn-default">Choice 1</button>
+
+            <button type="button" class="btn btn-default">Choice 2</button>
+
+            <button type="button" class="btn btn-default">Choice 3</button>
+        </div>
+
     </div>
-
+    <script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
+    <script src="https://code.jquery.com/jquery.js"></script>
+    <script type="text/javascript" src="js/main.js"></script>
 </body>
-<script type="text/javascript" src="js/main.js"></script>
+
 </html>
 
