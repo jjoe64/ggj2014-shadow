@@ -22,5 +22,23 @@ html, body {
 #uiWrapper {
 	margin: 50px;
 	outline: 1px solid grey;
+}
 
+#buttonWrapper {
+	width:600px;
+	margin:auto;
+	outline: 1px solid red;
+}
+
+#gameUI {
+	position: relative;
+	width: 100%;
+}
+
+.choice {
+	margin-left: 20px;
+}
+
+.choice img {
+	height:120px;
 }
