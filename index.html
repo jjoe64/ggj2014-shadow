@@ -38,7 +38,19 @@
 
             <!-- Main Canvas -->
             <canvas id="shadowCanvas"></canvas>
-            <canvas id="pickCanvas"></canvas>
+
+            <div class="choicesWrapper">
+
+                <canvas id="pickCanvas"></canvas>
+            
+                <div class="choices">
+                    <button class="choice choice1" />
+                    <button class="choice choice2" />
+                    <button class="choice choice3" />
+                </div>
+            
+            </div>
+
 
         </div>
 
@@ -61,6 +73,12 @@
     <script src="https://code.jquery.com/jquery.js"></script>
     <script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="js/main.js"></script>
+    
+    <script>
+        $(".choice1").click(function() {quizController.choose(1);});
+        $(".choice2").click(function() {quizController.choose(2);});
+        $(".choice2").click(function() {quizController.choose(3);});
+    </script>
 </body>
 
 </html>

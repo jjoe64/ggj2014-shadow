@@ -11,8 +11,47 @@ html, body {
 }
 #pickCanvas {
 	width: 100%;
-	height: 50%;
+	height: 150px;
 }
+
+#gameViewport {
+
+}
+
+.choicesWrapper{
+	position: relative;
+}
+button.choice {
+	width: 150px;
+	height: 150px;
+	outline: 1px dotted red;
+	position: absolute;
+    background: transparent;
+    border: none !important;
+    font-size:0px;
+    top:0;
+}
+
+button.choice1 {
+	left:0px;
+}
+
+button.choice2 {
+	top:0;
+	left:150px;
+}
+button.choice3 {
+	top:0;
+	left:300px;
+}
+
+
+
+
+
+
+
+
 
 #header,
 #gameUI {
@@ -31,6 +70,7 @@ html, body {
 }
 
 #gameUI {
+	display: none;
 	position: relative;
 	width: 100%;
 }
