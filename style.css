@@ -4,6 +4,7 @@ html, body {
 	padding: 0;
 	margin: 0;
 	overflow: hidden;
+	background-color: black;
 }
 #shadowCanvas {
 	width: 100%;
@@ -15,12 +16,12 @@ html, body {
 	height: 175px;
 
 }
-
 #uiWrapper {
-	width: 1000px;
+	width: 900px;
 	height: 600px;
 	margin: auto;
 	outline: 1px solid grey;
+	background-color: white;
 }
 
 #header {
@@ -34,15 +35,15 @@ html, body {
 }
 
 .gameDescription {
-	
+
 }
 
 .choicesWrapper{
 	position: relative;
 }
 button.choice {
-	width: 150px;
-	height: 150px;
+	width: 300px;
+	height: 175px;
 	outline: 1px dotted red;
 	position: absolute;
     background: transparent;
@@ -57,43 +58,18 @@ button.choice1 {
 
 button.choice2 {
 	top:0;
-	left:150px;
+	left:300px;
 }
 button.choice3 {
 	top:0;
-	left:300px;
+	left:600px;
 }
 
-
-
-
-
-
-
-
-
-#gameUI {
-	margin: 20px;
+.alert.winfail {
+	width: 30%;
+	position: absolute;
+	top:35%;
+	left:35%;
+	right:35%;
 }
 
-
-
-#buttonWrapper {
-	width:600px;
-	margin:auto;
-	outline: 1px solid red;
-}
-
-#gameUI {
-	display: none;
-	position: relative;
-	width: 100%;
-}
-
-.choice {
-	margin-left: 20px;
-}
-
-.choice img {
-	height:120px;
-}
