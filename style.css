@@ -7,15 +7,34 @@ html, body {
 }
 #shadowCanvas {
 	width: 100%;
-	height: 250px;
+	height: 350px;
+	outline: 1px solid black;
 }
 #pickCanvas {
 	width: 100%;
-	height: 150px;
+	height: 175px;
+
+}
+
+#uiWrapper {
+	width: 1000px;
+	height: 600px;
+	margin: auto;
+	outline: 1px solid grey;
+}
+
+#header {
+	height:50px;
+	margin-left: 30px;
+	text-align: center;
 }
 
 #gameViewport {
 
+}
+
+.gameDescription {
+	
 }
 
 .choicesWrapper{
@@ -53,15 +72,11 @@ button.choice3 {
 
 
 
-#header,
 #gameUI {
 	margin: 20px;
 }
 
-#uiWrapper {
-	margin: 50px;
-	outline: 1px solid grey;
-}
+
 
 #buttonWrapper {
 	width:600px;

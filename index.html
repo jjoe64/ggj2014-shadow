@@ -13,10 +13,13 @@
     <script src="js/PickCanvas.js"></script>
     <script src="js/PickScene.js"></script>
     <script src="js/QuizController.js"></script>
-    
-    <!-- Bootstrap CSS from CDN -->
+
+    <!-- Bootstrap -->
+    <link href="libs/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Bootstrap CSS from CDN 
     <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
-    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap-theme.min.css">-->
 
     <!-- CSS -->
     <link rel="stylesheet" type="test/css" href="style.css" />
@@ -39,7 +42,11 @@
             <!-- Main Canvas -->
             <canvas id="shadowCanvas"></canvas>
 
+            <div class="gameDescription">What do we see? Click on what it is:</div>
+
             <div class="choicesWrapper">
+
+                
 
                 <canvas id="pickCanvas"></canvas>
             
@@ -70,14 +77,20 @@
         </div>
 
     </div>
-    <script src="https://code.jquery.com/jquery.js"></script>
-    <script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
+
+    <script src="libs/jquery-2.1.0.min.js"></script>
+
+    <!-- jquery from CDN 
+    <script src="https://code.jquery.com/jquery.js"></script>-->
+
+    <script src="libs/bootstrap/js/bootstrap.min.js"></script>
+
     <script type="text/javascript" src="js/main.js"></script>
     
     <script>
         $(".choice1").click(function() {quizController.choose(1);});
         $(".choice2").click(function() {quizController.choose(2);});
-        $(".choice2").click(function() {quizController.choose(3);});
+        $(".choice3").click(function() {quizController.choose(3);});
     </script>
 </body>
 
