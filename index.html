@@ -7,31 +7,14 @@
     <!--Loading babylon engine -->
     <script src="libs/babylon.js"></script>
     <script src="libs/hand.js"></script>
-    <script src="js/objects.js"></script>
-    <script src="js/scene.js"></script>
+    <script src="js/GameObjects.js"></script>
+    <script src="js/ShadowScene.js"></script>
     <script src="js/ShadowCanvas.js"></script>
     <script src="js/PickCanvas.js"></script>
     <script src="js/PickScene.js"></script>
         
     <!-- CSS -->
-    <!-- ------ -->
-    <style>
-        html, body, div {
-            width: 100%;
-            height: 100%;
-            padding: 0;
-            margin: 0;
-            overflow: hidden;
-        }
-        #shadowCanvas {
-        		width: 100%;
-            height: 80%;
-        }
-        #pick1Canvas {
-        		width: 33%;
-        		height: 20%;
-        }
-    </style>
+    <link rel="stylesheet" type="test/css" href="style.css" />
 
 </head>
 
@@ -43,7 +26,7 @@
 
         <!-- Main Canvas -->
         <canvas id="shadowCanvas"></canvas>
-        <canvas id="pickCanvas1"></canvas>
+        <canvas id="pickCanvas"></canvas>
     </div>
 
 </body>

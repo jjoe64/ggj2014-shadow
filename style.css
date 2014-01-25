@@ -1,0 +1,16 @@
+html, body, div {
+	width: 100%;
+	height: 100%;
+	padding: 0;
+	margin: 0;
+	overflow: hidden;
+}
+#shadowCanvas {
+	width: 100%;
+	height: 70%;
+}
+#pickCanvas {
+	width: 100%;
+	height: 30%;
+}
+

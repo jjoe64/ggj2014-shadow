@@ -1,5 +1,5 @@
 "use strict";
 
 ShadowCanvas();
-PickCanvas("pickCanvas1");
+PickCanvas("pickCanvas");
 

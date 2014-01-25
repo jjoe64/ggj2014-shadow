@@ -6,15 +6,28 @@ var CreatePickScene = function (engine) {
 
     light.intensity = 1.0;
 
-    camera.setPosition(new BABYLON.Vector3(0.1, 1, 0));
+    camera.setPosition(new BABYLON.Vector3(10, 0, 0));
     //camera.fov = 2;
     
     // palme test
 	BABYLON.SceneLoader.ImportMesh(AllObjects[0].id, "assets/", "huskchair.babylon", scene, function (newMeshes, particleSystems) {
+		newMeshes[0].position.z = 10;
 		newMeshes[0].scaling.x *= AllObjects[0].pickScaleFactor;
 		newMeshes[0].scaling.y *= AllObjects[0].pickScaleFactor;
 		newMeshes[0].scaling.z *= AllObjects[0].pickScaleFactor;
-		
+	});
+    
+	BABYLON.SceneLoader.ImportMesh(AllObjects[0].id, "assets/", "huskchair.babylon", scene, function (newMeshes, particleSystems) {
+		newMeshes[0].scaling.x *= AllObjects[0].pickScaleFactor;
+		newMeshes[0].scaling.y *= AllObjects[0].pickScaleFactor;
+		newMeshes[0].scaling.z *= AllObjects[0].pickScaleFactor;
+	});
+    
+	BABYLON.SceneLoader.ImportMesh(AllObjects[0].id, "assets/", "huskchair.babylon", scene, function (newMeshes, particleSystems) {
+		newMeshes[0].position.z = -10;
+		newMeshes[0].scaling.x *= AllObjects[0].pickScaleFactor;
+		newMeshes[0].scaling.y *= AllObjects[0].pickScaleFactor;
+		newMeshes[0].scaling.z *= AllObjects[0].pickScaleFactor;
 	});
     
     var beforeRenderFunction = function () {
