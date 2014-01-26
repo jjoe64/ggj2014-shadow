@@ -46,7 +46,7 @@
 
             <div class="gameDescription">
 
-                <button class="btn btn-primary stopMusic"><span class="glyphicon glyphicon-volume-off"></span></button>
+                <button class="btn btn-default stopMusic"><span class="glyphicon glyphicon-volume-off"></span></button>
 
 
                 What do we see? Click on what it is: 
@@ -112,7 +112,7 @@
                     this.currentTime = 0;
                     this.play();
                 }, false);
-                myAudio.volume = 0.5;
+                myAudio.volume = 0.4;
                 //myAudio.play();
 
                 $(".stopMusic").click(function() {
@@ -122,6 +122,7 @@
 				// singleplayer
 				$('#btnSingleplayer').click(function() {
                     $('#start').fadeOut(2000);
+                    myAudio.play();
 					quizController.playSingleplayer();
 					$('#btnSingleplayer').attr('disabled', true);
 					$('#btnReady').attr('disabled', true);
@@ -131,6 +132,7 @@
 				quizController.multiplayer.connect();
 				$('#btnReady').click(function() {
                     $('#start').fadeOut(2000);
+                    myAudio.play();
 					quizController.multiplayer.ready();
 					$('#btnSingleplayer').attr('disabled', true);
 					$('#btnReady').attr('disabled', true);
