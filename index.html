@@ -93,7 +93,7 @@
     <div class="alert alert-warning start winfail" style="display:block" id="start">
         <h1>Welcome!</h1> <p>You´ll embark on a journey about the true nature of things and yourself. Take a close look! We hope you have fun!</p>
         <p><button class="btn btn-primary startSP" id="btnSingleplayer">Play alone!</button></p>
-        <p><button class="btn btn-primary startMP" id="btnConnect" disabled="disabled">Connect to other travellers!</button>
+        <p><button class="btn btn-primary startMP" id="btnConnect">Connect to other travellers!</button>
             => <button class="btn btn-primary startMP" id="btnReady" disabled="disabled">Play!</button></p>
     </div>
 
@@ -127,27 +127,31 @@
 
                 $(".stopMusic").click(function() {
                     myAudio.pause();
-				});
+					});
 
-				// singleplayer
-				$('#btnSingleplayer').click(function() {
+					// singleplayer
+					$('#btnSingleplayer').click(function() {
                     $('#start').fadeOut(2000);
                     myAudio.play();
-					quizController.playSingleplayer();
-					//$('#btnSingleplayer').attr('disabled', true);
-					//$('#btnReady').attr('disabled', true);
-				});
-				
-				// multiplayer
-				quizController.multiplayer.connect();
-				$('#btnReady').click(function() {
+						quizController.playSingleplayer();
+						$('#btnSingleplayer').attr('disabled', true);
+						$('#btnReady').attr('disabled', true);
+					});
+					
+					// multiplayer
+					$('#btnConnect').click(function() {
+						$('#btnConnect').attr('disabled', true);
+						quizController.multiplayer.connect(function() {
+							$('#btnReady').attr('disabled', false);
+						});
+					});
+					$('#btnReady').click(function() {
                     $('#start').fadeOut(2000);
                     myAudio.play();
-					quizController.multiplayer.ready();
-					//$('#btnSingleplayer').attr('disabled', true);
-					//$('#btnReady').attr('disabled', true);
-				});
-				
+						quizController.multiplayer.ready();
+						$('#btnSingleplayer').attr('disabled', true);
+						$('#btnReady').attr('disabled', true);
+					});
         });
 
     </script>

@@ -1,28 +1,46 @@
 var io = require('socket.io').listen(8081);
 
-var GameState = {
-	currentScore: 0,
-	remainingTime: 0
-};
+var GameState, ServerState;
 
-var ServerState = {
-	playerSockets: [],
-	playersReady: 0,
-	playing: false,
-	startTime: 0,
-	roundTimeSeconds: 30
-};
+function resetState() {
+	GameState = {
+		currentScore: 0,
+		remainingTime: 0
+	};
+
+	ServerState = {
+		playerSockets: [],
+		playersReady: 0,
+		playing: false,
+		startTime: 0,
+		roundTimeSeconds: 30
+	};
+}
+resetState();
 
 io.sockets.on('connection', function (socket) {
-	if (ServerState.playing) return;
-	
+	// if already playing
+	if (ServerState.playing) {
+		var goneSeconds = (new Date().getTime() - ServerState.startTime)/1000;
+		GameState.remainingTime = parseInt(ServerState.roundTimeSeconds-goneSeconds) +1;
+
+		if (GameState.remainingTime <= 0) {
+			endGame();
+		}
+	}
+
 	// new player
-	ServerState.playerSockets.push(socket);
+	ServerState.playerSockets.push(socket);	
+
+	if (ServerState.playing) {
+		socket.emit('start', GameState);
+	}
 	
 	// ready
 	socket.on('ready', function (data) {
 		ServerState.playersReady++;
-		if (ServerState.playersReady == ServerState.playerSockets.length) {
+		console.log(ServerState);
+		if (ServerState.playerSockets.length > 0 && ServerState.playersReady >= ServerState.playerSockets.length) {
 			startGame();
 		}
 	});
@@ -34,7 +52,12 @@ io.sockets.on('connection', function (socket) {
 	});
 
 	socket.on('disconnect', function () {
-		//TODO ServerState.playerSockets
+		var idx = 0;
+		for (var i=0; i<ServerState.playerSockets.length; i++) {
+			if (ServerState.playerSockets[i] == socket) { idx = 0; break; }
+		}
+		ServerState.playerSockets.splice(idx, 1);
+		console.log("disconnect "+ServerState.playerSockets.length);
 	});
 
 });
@@ -53,15 +76,22 @@ function startGame() {
 }
 
 function endGame() {
-	
+	console.log("end game");
+	for (var i=0; i<ServerState.playerSockets.length; i++) {
+		ServerState.playerSockets[i].disconnect();
+	}
+	resetState();
 }
 
 function updateGameState() {
 	var goneSeconds = (new Date().getTime() - ServerState.startTime)/1000;
 	GameState.remainingTime = parseInt(ServerState.roundTimeSeconds-goneSeconds) +1;
+
 	if (GameState.remainingTime <= 0) {
 		endGame();
 	}
+	
+	console.log(GameState);
 	for (var i=0; i<ServerState.playerSockets.length; i++) {
 		ServerState.playerSockets[i].emit('update', GameState);
 	}

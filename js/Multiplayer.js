@@ -1,11 +1,11 @@
 "use strict";
 
 var Multiplayer = function() {};
-Multiplayer.prototype.connect = function() {
+Multiplayer.prototype.connect = function(cb) {
 	this.socket = io.connect('http://83.169.37.67:8081');
 	this.socket.on('connect', function () {
 		console.log("connected");
-		$('#btnReady').attr('disabled', false);
+		cb();
 	});
 	var _this = this;
 	this.socket.on('update', function(d) {
