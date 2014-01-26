@@ -5,7 +5,7 @@ var GameState = {
 	remainingTime: 0
 };
 
-var SeverState = {
+var ServerState = {
 	playerSockets: [],
 	playersReady: 0,
 	playing: false,
@@ -21,8 +21,8 @@ io.sockets.on('connection', function (socket) {
 	
 	// ready
 	socket.on('ready', function (data) {
-		playersReady++;
-		if (playersReady == playerSockets.length) {
+		ServerState.playersReady++;
+		if (ServerState.playersReady == ServerState.playerSockets.length) {
 			startGame();
 		}
 	});
@@ -58,7 +58,7 @@ function endGame() {
 
 function updateGameState() {
 	var goneSeconds = (new Date().getTime() - ServerState.startTime)/1000;
-	GameState.remainingTime = ServerState.roundTimeSeconds-goneSeconds;
+	GameState.remainingTime = parseInt(ServerState.roundTimeSeconds-goneSeconds) +1;
 	if (GameState.remainingTime <= 0) {
 		endGame();
 	}

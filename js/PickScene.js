@@ -34,7 +34,6 @@ PickScene.prototype.setupScene = function() {
     var camera = new BABYLON.ArcRotateCamera("Camera", 0, 0, 0, BABYLON.Vector3.Zero(), scene);
     camera.setPosition(new BABYLON.Vector3(15, 0, 0));
     camera.fov = 1;
-    __camera = camera;
     
 	var light0 = new BABYLON.HemisphericLight("Hemi0", new BABYLON.Vector3(0, 10, 0), scene);
 	light0.diffuse = new BABYLON.Color3(1, 1, 1);

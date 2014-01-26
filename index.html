@@ -5,9 +5,10 @@
     <title>GGJ 2014 - Shadow Quiz 3D!</title>
 
     <!--Loading babylon engine -->
-	<script src="libs/socket.io.js"></script>
+	<script src="libs/socket.io.min.js"></script>
     <script src="libs/babylon.js"></script>
     <script src="libs/hand.js"></script>
+     <script src="js/Multiplayer.js"></script>
     <script src="js/GameObjects.js"></script>
     <script src="js/ShadowScene.js"></script>
     <script src="js/PickScene.js"></script>
@@ -79,6 +80,8 @@
         <h1>Done!</h1> <p>You´ve been on a journey about the true nature of things and yourself. We hope you had fun!</p>
         <p><button class="btn btn-success playAgain">Play again!</button></p>
     </div>
+    
+    <button id="btnReady" disabled="disabled">I'm ready</button>
 
     <script src="libs/jquery-2.1.0.min.js"></script>
 
@@ -108,9 +111,14 @@
 
                 $(".stopMusic").click(function() {
                     myAudio.pause();
+					});
 
-            });
-
+					// multiplayer
+					quizController.multiplayer.connect();
+					$('#btnReady').click(function() {
+						quizController.multiplayer.ready();
+						$('#btnReady').attr('disabled', true);
+					});
         });
 
     </script>

@@ -8,7 +8,10 @@ function randomNumber(max) {
 	return r;
 }
 
-var QuizController = function() {};
+var QuizController = function() {
+	this.multiplayer = new Multiplayer();
+	this.remainingSeconds = 0;
+};
 
 QuizController.prototype.choose = function(number) {
 
@@ -19,6 +22,8 @@ QuizController.prototype.choose = function(number) {
 			//alert($("#scoreCount").text());
 
 			$("#scoreCount").text(parseInt($("#scoreCount").text())+1)
+			
+			this.multiplayer.addScore();
 
 			$(".win").clone().appendTo("body").show().fadeOut(4000);
 			var winSound = new Audio('assets/sounds/win2.wav');
@@ -67,18 +72,18 @@ QuizController.prototype.displayQuiz = function(quiz) {
 	pickScene.displayPicks.call(pickScene, quiz._series);
 };
 
-function startGameCountdown(remaining) {
+QuizController.prototype.startGameCountdown = function(remaining) {
 	//alert("started");
-	updateCountdownCounter(remaining)
+	this.remainingSeconds = remaining;
+	this.updateCountdownCounter();
 }
 
-function updateCountdownCounter(remaining) {
-
-	$("#countdown").text(remaining);
-	remaining--;
-
-	if (remaining >= 0) {
-		setTimeout(updateCountdownCounter,1000,remaining);
+QuizController.prototype.updateCountdownCounter = function() {
+	$("#countdown").text(quizController.remainingSeconds);
+	quizController.remainingSeconds--;
+	
+	if (quizController.remainingSeconds >= 0) {
+		setTimeout(quizController.updateCountdownCounter, 1000);
 	} else {
 		$("#triumph").fadeIn(2000);
 		//alert("time over!");

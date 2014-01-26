@@ -7,9 +7,3 @@ var pickScene = new PickScene();
 // business logic
 var quizController = new QuizController();
 
-$(document).ready(function() {
-	quizController.nextQuiz();
-	startGameCountdown(60);
-});
-
-

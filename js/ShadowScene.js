@@ -124,8 +124,8 @@ ShadowScene.prototype.displayShadow = function(obj) {
 		newMeshes[0].scaling.z *= obj.scaleFactor;
 		
 		// Shadows
-		var shadowGenerator = new BABYLON.ShadowGenerator(512, _this.light);
-		shadowGenerator.getShadowMap().renderList.push(newMeshes[0]);
+		//var shadowGenerator = new BABYLON.ShadowGenerator(512, _this.light);
+		//shadowGenerator.getShadowMap().renderList.push(newMeshes[0]);
 	});
 };
 
