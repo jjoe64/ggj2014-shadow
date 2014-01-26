@@ -21,7 +21,7 @@ QuizController.prototype.choose = function(number) {
 			$("#scoreCount").text(parseInt($("#scoreCount").text())+1)
 
 			$(".win").clone().appendTo("body").show().fadeOut(4000);
-			var winSound = new Audio('assets/sounds/win.wav');
+			var winSound = new Audio('assets/sounds/win2.wav');
 			winSound.volume = 0.5;
             winSound.addEventListener('ended', function() {
                 this.nextQuiz();
@@ -32,7 +32,7 @@ QuizController.prototype.choose = function(number) {
 			this.nextQuiz();
 		} else {
 			$(".fail").clone().appendTo("body").show().fadeOut(4000);
-			var failSound = new Audio('assets/sounds/fail.wav');
+			var failSound = new Audio('assets/sounds/fail2.wav');
 			failSound.volume = 0.5;
 			failSound.play();
 			//alert("WROOOONG, try again");
@@ -80,6 +80,13 @@ function updateCountdownCounter(remaining) {
 	if (remaining >= 0) {
 		setTimeout(updateCountdownCounter,1000,remaining);
 	} else {
-		alert("time over!");
+		$("#triumph").fadeIn(2000);
+		//alert("time over!");
 	}
 }
+
+function restartGame() {
+	location.reload();
+}
+
+

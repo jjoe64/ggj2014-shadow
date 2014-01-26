@@ -35,7 +35,7 @@
 
         <div id="header">
             <img src="assets/header.png" alt="GGJ 2014 - Shadow Quiz 3D!" />
-            <div id="score"><span id="countdown">0</span> / <span id="scoreCount">0</span> pts.</div>
+            <div id="score"><span id="countdown">0</span> sec | <span id="scoreCount">0</span> pts.</div>
         </div>
 
         <div id="gameViewport">
@@ -45,7 +45,7 @@
 
             <div class="gameDescription">
 
-                <button class="btn btn-danger stopMusic"><span class="glyphicon glyphicon-volume-off"></span></button>
+                <button class="btn btn-primary stopMusic"><span class="glyphicon glyphicon-volume-off"></span></button>
 
 
                 What do we see? Click on what it is: 
@@ -67,12 +67,17 @@
     <!-- Alerts -->
     <div class="alert alert-success alert-dismissable winfail win" id="win">
         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-        <strong>Correct!</strong> You saw it for what it is. Good boy!
+        <h1>Correct!</h1> You saw it for what it is. Good boy!
     </div>
 
     <div class="alert alert-danger alert-dismissable winfail fail" id="fail">
         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-        <strong>Wrong!</strong> Maybe you saw too much of yourself. Go meditate on that.
+        <h1>Wrong!</h1> Maybe you saw too much of yourself. Go meditate on that.
+    </div>
+
+   <div class="alert alert-info triumph winfail" style="" id="triumph">
+        <h1>Done!</h1> <p>You´ve been on a journey about the true nature of things and yourself. We hope you had fun!</p>
+        <p><button class="btn btn-success playAgain">Play again!</button></p>
     </div>
 
     <script src="libs/jquery-2.1.0.min.js"></script>
@@ -91,6 +96,7 @@
                 $(".choice1").click(function() {quizController.choose(1);});
                 $(".choice2").click(function() {quizController.choose(2);});
                 $(".choice3").click(function() {quizController.choose(3);});
+                $(".playAgain").click(function() {restartGame();});
 
                 myAudio = new Audio('assets/sounds/412369738231.aac.mp4'); 
                 myAudio.addEventListener('ended', function() {
@@ -103,40 +109,9 @@
                 $(".stopMusic").click(function() {
                     myAudio.pause();
 
-                countdown('countdown');
             });
 
-
-
         });
-
-    var interval;
-    var minutes = 1;
-    var seconds = 5;
-    
-    function countdown(element) {
-        interval = setInterval(function() {
-            var el = document.getElementById(element);
-            if(seconds == 0) {
-                if(minutes == 0) {
-                    el.innerHTML = "countdown's over!";                    
-                    clearInterval(interval);
-                    return;
-                } else {
-                    minutes--;
-                    seconds = 60;
-                }
-            }
-            if(minutes > 0) {
-                var minute_text = minutes + (minutes > 1 ? ' minutes' : ' minute');
-            } else {
-                var minute_text = '';
-            }
-            var second_text = seconds > 1 ? 'seconds' : 'second';
-            el.innerHTML = minute_text + ' ' + seconds + ' ' + second_text + ' remaining';
-            seconds--;
-        }, 1000);
-    }
 
     </script>
 </body>

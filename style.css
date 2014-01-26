@@ -95,5 +95,13 @@ button.choice3 {
 	left:35%;
 	right:35%;
 	display: none;
+	opacity: 0.9;
 }
 
+#triumph {
+	opacity: 1;
+}
+
+.btn.playAgain {
+	width: 100%;
+}
