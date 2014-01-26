@@ -80,11 +80,14 @@
         <h1>Done!</h1> <p>You´ve been on a journey about the true nature of things and yourself. We hope you had fun!</p>
         <p><button class="btn btn-success playAgain">Play again!</button></p>
     </div>
-    
-    <div class="alert alert-info winfail" id="mode-select">
-		 <button id="btnSingleplayer">Play (Singleplayer)</button>
-		 <button id="btnReady" disabled="disabled">I'm ready (Multiplayer)</button>
-	</div>
+
+    <div class="alert alert-warning start winfail" style="" id="start">
+        <h1>Welcome!</h1> <p>You´ll embark on a journey about the true nature of things and yourself. Take a close look! We hope you have fun!</p>
+        <p><button class="btn btn-primary startSP" id="btnSingleplayer">Play alone!</button></p>
+        <p><button class="btn btn-primary startMP" id="btnReady" disabled="disabled">Play with other travellers!</button></p>
+    </div>
+
+
 	
     <script src="libs/jquery-2.1.0.min.js"></script>
 
@@ -114,25 +117,25 @@
 
                 $(".stopMusic").click(function() {
                     myAudio.pause();
-					});
+				});
 
-					// singleplayer
-					$('#btnSingleplayer').click(function() {
-						quizController.playSingleplayer();
-						$('#btnSingleplayer').attr('disabled', true);
-						$('#btnReady').attr('disabled', true);
-					});
-					
-					// multiplayer
-					quizController.multiplayer.connect();
-					$('#btnReady').click(function() {
-						quizController.multiplayer.ready();
-						$('#btnSingleplayer').attr('disabled', true);
-						$('#btnReady').attr('disabled', true);
-					});
-					
-					// show mode select screen
-					$("#mode-select").show();
+				// singleplayer
+				$('#btnSingleplayer').click(function() {
+                    $('#start').fadeOut(2000);
+					quizController.playSingleplayer();
+					$('#btnSingleplayer').attr('disabled', true);
+					$('#btnReady').attr('disabled', true);
+				});
+				
+				// multiplayer
+				quizController.multiplayer.connect();
+				$('#btnReady').click(function() {
+                    $('#start').fadeOut(2000);
+					quizController.multiplayer.ready();
+					$('#btnSingleplayer').attr('disabled', true);
+					$('#btnReady').attr('disabled', true);
+				});
+				
         });
 
     </script>

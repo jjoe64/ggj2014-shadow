@@ -102,6 +102,10 @@ button.choice3 {
 	opacity: 1;
 }
 
+#start {
+	display:block;
+}
+
 .btn.playAgain {
 	width: 100%;
 }
