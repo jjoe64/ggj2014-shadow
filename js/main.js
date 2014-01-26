@@ -8,5 +8,11 @@ var pickScene = new PickScene();
 var quizController = new QuizController();
 
 // start
-quizController.nextQuiz();
+//quizController.nextQuiz();
+
+$(document).ready(function() {
+	quizController.nextQuiz();
+	startGameCountdown(5);
+});
+
 

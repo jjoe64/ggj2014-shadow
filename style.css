@@ -21,13 +21,23 @@ html, body {
 	height: 600px;
 	margin: auto;
 	margin-top:30px;
-	outline: 1px solid grey;
-	background-color: white;
+
+	background-color: black;
+	color: white;
 }
 
 #header {
 	height:100px;
-	text-align: center;
+	position:relative;
+}
+
+#score {
+	position:absolute;
+	right:0;
+	top:0;
+	widht:100px;
+	height:100px;
+	font-size: 66px;
 }
 
 #gameViewport {
@@ -35,7 +45,15 @@ html, body {
 }
 
 .gameDescription {
+	height: 50px;
+	position: relative;
 
+}
+
+
+.gameDescription button.stopMusic {
+	position:absolute;
+	right:0; 
 }
 
 .choicesWrapper{
@@ -44,12 +62,17 @@ html, body {
 button.choice {
 	width: 300px;
 	height: 175px;
-	outline: 1px dotted red;
+	outline: 1px solid white;
 	position: absolute;
     background: transparent;
     border: none !important;
     font-size:0px;
     top:0;
+}
+
+button.choice:hover {
+	background-color: orange;
+	opacity:0.4;
 }
 
 button.choice1 {

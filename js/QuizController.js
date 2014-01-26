@@ -15,7 +15,11 @@ QuizController.prototype.choose = function(number) {
 	// outcome
 	if (this._currentQuiz) {
 		if (this._currentQuiz._shadowIdx === number-1) {
-			// right
+			
+			//alert($("#scoreCount").text());
+
+			$("#scoreCount").text(parseInt($("#scoreCount").text())+1)
+
 			$(".win").clone().appendTo("body").show().fadeOut(4000);
 			var winSound = new Audio('assets/sounds/win.wav');
 			winSound.volume = 0.5;
@@ -23,6 +27,7 @@ QuizController.prototype.choose = function(number) {
                 this.nextQuiz();
             }, false);
             winSound.play();
+
 			//alert("YES, next quiz loading ...");
 			this.nextQuiz();
 		} else {
@@ -44,7 +49,7 @@ QuizController.prototype.nextQuiz = function() {
 	
 	// choose random object for shadow
 	var shadowIdx = randomNumber(2);
-	//var shadowIdx = 2;
+	//var shadowIdx = 0;
 	var shadow = series[shadowIdx];
 	
 	// update UI
@@ -62,3 +67,19 @@ QuizController.prototype.displayQuiz = function(quiz) {
 	pickScene.displayPicks.call(pickScene, quiz._series);
 };
 
+function startGameCountdown(remaining) {
+	//alert("started");
+	updateCountdownCounter(remaining)
+}
+
+function updateCountdownCounter(remaining) {
+
+	$("#countdown").text(remaining);
+	remaining--;
+
+	if (remaining >= 0) {
+		setTimeout(updateCountdownCounter,1000,remaining);
+	} else {
+		alert("time over!");
+	}
+}

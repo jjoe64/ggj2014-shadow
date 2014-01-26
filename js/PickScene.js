@@ -33,8 +33,8 @@ PickScene.prototype.setupScene = function() {
     
     var camera = new BABYLON.ArcRotateCamera("Camera", 0, 0, 0, BABYLON.Vector3.Zero(), scene);
     camera.setPosition(new BABYLON.Vector3(15, 0, 0));
+    camera.fov = 1;
     __camera = camera;
-    //camera.fov = 2;
     
 	var light0 = new BABYLON.HemisphericLight("Hemi0", new BABYLON.Vector3(0, 10, 0), scene);
 	light0.diffuse = new BABYLON.Color3(1, 1, 1);
@@ -92,6 +92,7 @@ PickScene.prototype.displayPicks = function(series) {
 		newMeshes[0].scaling.y *= series[0].pickScaleFactor;
 		newMeshes[0].scaling.z *= series[0].pickScaleFactor;
 
+		//newMeshes[0].rotation.z = Math.PI/4
 	});
     
 	BABYLON.SceneLoader.ImportMesh(series[1].id, "assets/models/", series[1].file, this.scene, function (newMeshes, particleSystems) {

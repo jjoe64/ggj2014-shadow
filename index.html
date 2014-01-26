@@ -35,6 +35,7 @@
 
         <div id="header">
             <img src="assets/header.png" alt="GGJ 2014 - Shadow Quiz 3D!" />
+            <div id="score"><span id="countdown">0</span> / <span id="scoreCount">0</span> pts.</div>
         </div>
 
         <div id="gameViewport">
@@ -42,8 +43,13 @@
             <!-- Main Canvas -->
             <canvas id="shadowCanvas"></canvas>
 
-            <div class="gameDescription"><button class="btn btn-danger stopMusic"><span class="glyphicon glyphicon-volume-off"></span></button>
-                What do we see? Click on what it is: </div>
+            <div class="gameDescription">
+
+                <button class="btn btn-danger stopMusic"><span class="glyphicon glyphicon-volume-off"></span></button>
+
+
+                What do we see? Click on what it is: 
+            </div>
 
             <div class="choicesWrapper">
 
@@ -58,6 +64,7 @@
         </div>
     </div>
 
+    <!-- Alerts -->
     <div class="alert alert-success alert-dismissable winfail win" id="win">
         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
         <strong>Correct!</strong> You saw it for what it is. Good boy!
@@ -81,23 +88,55 @@
         $(document).ready(
             function() {
 
-            $(".choice1").click(function() {quizController.choose(1);});
-            $(".choice2").click(function() {quizController.choose(2);});
-            $(".choice3").click(function() {quizController.choose(3);});
+                $(".choice1").click(function() {quizController.choose(1);});
+                $(".choice2").click(function() {quizController.choose(2);});
+                $(".choice3").click(function() {quizController.choose(3);});
 
-            myAudio = new Audio('assets/sounds/412369738231.aac.mp4'); 
-            myAudio.addEventListener('ended', function() {
-                this.currentTime = 0;
-                this.play();
-            }, false);
-            myAudio.volume = 0.5;
-            myAudio.play();
+                myAudio = new Audio('assets/sounds/412369738231.aac.mp4'); 
+                myAudio.addEventListener('ended', function() {
+                    this.currentTime = 0;
+                    this.play();
+                }, false);
+                myAudio.volume = 0.5;
+                //myAudio.play();
 
-            $(".stopMusic").click(function() {
-                myAudio.pause();
+                $(".stopMusic").click(function() {
+                    myAudio.pause();
 
+                countdown('countdown');
             });
+
+
+
         });
+
+    var interval;
+    var minutes = 1;
+    var seconds = 5;
+    
+    function countdown(element) {
+        interval = setInterval(function() {
+            var el = document.getElementById(element);
+            if(seconds == 0) {
+                if(minutes == 0) {
+                    el.innerHTML = "countdown's over!";                    
+                    clearInterval(interval);
+                    return;
+                } else {
+                    minutes--;
+                    seconds = 60;
+                }
+            }
+            if(minutes > 0) {
+                var minute_text = minutes + (minutes > 1 ? ' minutes' : ' minute');
+            } else {
+                var minute_text = '';
+            }
+            var second_text = seconds > 1 ? 'seconds' : 'second';
+            el.innerHTML = minute_text + ' ' + seconds + ' ' + second_text + ' remaining';
+            seconds--;
+        }, 1000);
+    }
 
     </script>
 </body>
