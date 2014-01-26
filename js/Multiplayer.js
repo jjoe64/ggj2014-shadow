@@ -21,7 +21,9 @@ Multiplayer.prototype.ready = function() {
 };
 
 Multiplayer.prototype.addScore = function() {
-	this.socket.emit('addScore', {});
+	if (this.socket) {
+		this.socket.emit('addScore', {});
+	}
 };
 
 Multiplayer.prototype.onUpdate = function(d) {
