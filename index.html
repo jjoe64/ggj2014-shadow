@@ -34,7 +34,7 @@
     <div id="uiWrapper">
 
         <div id="header">
-            <h1>GGJ 2014 - Shadow Quiz 3D!</h1>
+            <img src="assets/header.png" alt="GGJ 2014 - Shadow Quiz 3D!" />
         </div>
 
         <div id="gameViewport">
@@ -42,7 +42,8 @@
             <!-- Main Canvas -->
             <canvas id="shadowCanvas"></canvas>
 
-            <div class="gameDescription">What do we see? Click on what it is:</div>
+            <div class="gameDescription"><button class="btn btn-danger stopMusic"><span class="glyphicon glyphicon-volume-off"></span></button>
+                What do we see? Click on what it is: </div>
 
             <div class="choicesWrapper">
 
@@ -53,11 +54,8 @@
                     <button class="choice choice2" />
                     <button class="choice choice3" />
                 </div>
-            
             </div>
-
         </div>
-
     </div>
 
     <div class="alert alert-success alert-dismissable winfail win" id="win">
@@ -87,8 +85,18 @@
             $(".choice2").click(function() {quizController.choose(2);});
             $(".choice3").click(function() {quizController.choose(3);});
 
+            myAudio = new Audio('assets/sounds/412369738231.aac.mp4'); 
+            myAudio.addEventListener('ended', function() {
+                this.currentTime = 0;
+                this.play();
+            }, false);
+            myAudio.volume = 0.5;
+            myAudio.play();
 
+            $(".stopMusic").click(function() {
+                myAudio.pause();
 
+            });
         });
 
     </script>

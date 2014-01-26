@@ -4,7 +4,9 @@ var ShadowScene = function() {
 	this.setupEngine();
 	this.setupScene();
 };
+
 ShadowScene.prototype.setupEngine = function() {
+
 	// Get the Canvas element from our HTML below
 	this.canvas = document.getElementById("shadowCanvas");
 
@@ -27,25 +29,51 @@ ShadowScene.prototype.setupEngine = function() {
 		     });
 	*/      
 };
-ShadowScene.prototype.setupScene = function() {
-    var scene = new BABYLON.Scene(this.engine);
-    var camera = new BABYLON.ArcRotateCamera("Camera", 0, 0, 0, BABYLON.Vector3.Zero(), scene);
-    camera.setPosition(new BABYLON.Vector3(0.1, 10, 0));
-    camera.fov = 2;
 
-    this.light = new BABYLON.DirectionalLight("dir01", new BABYLON.Vector3(0, -1, -0.2), scene);
-    this.light.position = new BABYLON.Vector3(0, 30, 0);
+ShadowScene.prototype.setupScene = function() {
+
+    var scene = new BABYLON.Scene(this.engine);
+
+    var camera = new BABYLON.ArcRotateCamera("Camera", 0, 0, 2, BABYLON.Vector3.Zero(), scene);
+    camera.setPosition(new BABYLON.Vector3(-20, 50, 0));
+    camera.fov = 1;
+
+	var light0 = new BABYLON.SpotLight("Spot0", new BABYLON.Vector3(0, 30, -10), new BABYLON.Vector3(0, -1, 0), 10, 1, scene);
+	light0.diffuse = new BABYLON.Color3(1, 1, 1);
+	light0.specular = new BABYLON.Color3(1, 1, 1);
+
+	/*
+    this.light = new BABYLON.DirectionalLight("dir01", new BABYLON.Vector3(0, -1, -0.5), scene);
+    this.light.position = new BABYLON.Vector3(-20, 50, 0);
     this.light.intensity = 1.0;
+    */
 
     // Ground
     var ground = BABYLON.Mesh.CreateGround("ground", 1000, 1000, 1, scene, false);
     var groundMaterial = new BABYLON.StandardMaterial("ground", scene);
+    //groundMaterial.diffuseTexture = new BABYLON.Texture("/assets/grass.jpg", scene);
     //groundMaterial.diffuseColor = new BABYLON.Color3(0, 0, 0);
-    //groundMaterial.specularColor = new BABYLON.Color3(0, 0, 0);
-    ground.position.y = -2.05;
+    //groundMaterial.specularColor = new BABYLON.Color3(20, 30, 0);
+    ground.position.y = 0;
     ground.material = groundMaterial;
 	ground.receiveShadows = true;
     
+    //debug 
+    /*
+    var box = BABYLON.Mesh.CreateSphere("Box", 20.0, 6.0, scene);
+    var materialSphere1 = new BABYLON.StandardMaterial("texture1", scene);
+	materialSphere1.wireframe = true;
+    box.material = materialSphere1;
+    box.position = new BABYLON.Vector3(0,0,-10);*/
+
+    //debug 
+    /*
+    var box = BABYLON.Mesh.CreateSphere("Box", 20.0, 6.0, scene);
+    var materialSphere1 = new BABYLON.StandardMaterial("texture1", scene);
+	materialSphere1.wireframe = true;
+    box.material = materialSphere1;
+    box.position = new BABYLON.Vector3(0,30,-10);*/
+
     var beforeRenderFunction = function () {
         // Camera
         if (camera.beta < 0.1)
@@ -69,7 +97,7 @@ ShadowScene.prototype.setupScene = function() {
     });
     
 	// Attach the camera to the scene
-	scene.activeCamera.attachControl(this.canvas);
+	//scene.activeCamera.attachControl(this.canvas);
 
 
 	// Once the scene is loaded, just register a render loop to render it
@@ -78,7 +106,9 @@ ShadowScene.prototype.setupScene = function() {
 	});
 	this.scene = scene;
 };
+
 ShadowScene.prototype.displayShadow = function(obj) {
+
 	if (this._currentMesh) {
 		this._currentMesh.isVisible = false;
 	}
@@ -86,7 +116,7 @@ ShadowScene.prototype.displayShadow = function(obj) {
 	BABYLON.SceneLoader.ImportMesh(obj.id, "assets/models/", obj.file, this.scene, function (newMeshes, particleSystems) {
 		_this._currentMesh = newMeshes[0];
 		newMeshes[0].position.x = obj.offset[0];
-		newMeshes[0].position.y = 20.0 + obj.offset[1];
+		newMeshes[0].position.y = 30.0 + obj.offset[1];
 		newMeshes[0].position.z = obj.offset[2];
 		
 		newMeshes[0].scaling.x *= obj.scaleFactor;

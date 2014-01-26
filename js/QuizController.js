@@ -9,15 +9,27 @@ function randomNumber(max) {
 }
 
 var QuizController = function() {};
+
 QuizController.prototype.choose = function(number) {
+
+	// outcome
 	if (this._currentQuiz) {
 		if (this._currentQuiz._shadowIdx === number-1) {
 			// right
-			$(".win").clone().appendTo("body").show();
+			$(".win").clone().appendTo("body").show().fadeOut(4000);
+			var winSound = new Audio('assets/sounds/win.wav');
+			winSound.volume = 0.5;
+            winSound.addEventListener('ended', function() {
+                this.nextQuiz();
+            }, false);
+            winSound.play();
 			//alert("YES, next quiz loading ...");
 			this.nextQuiz();
 		} else {
-			$(".fail").clone().appendTo("body").show();
+			$(".fail").clone().appendTo("body").show().fadeOut(4000);
+			var failSound = new Audio('assets/sounds/fail.wav');
+			failSound.volume = 0.5;
+			failSound.play();
 			//alert("WROOOONG, try again");
 		}
 	}
@@ -25,18 +37,20 @@ QuizController.prototype.choose = function(number) {
 
 QuizController.prototype.nextQuiz = function() {
 	
-
 	// choose random similar objects
 	var seriesIdx = SimilarObjects[randomNumber(SimilarObjects.length-1)];
+	//var seriesIdx = SimilarObjects[2];
 	var series = [AllObjects[seriesIdx[0]], AllObjects[seriesIdx[1]], AllObjects[seriesIdx[2]]];
 	
 	// choose random object for shadow
 	var shadowIdx = randomNumber(2);
+	//var shadowIdx = 2;
 	var shadow = series[shadowIdx];
 	
 	// update UI
 	this.displayQuiz(new Quiz(series, shadow, shadowIdx));
 };
+
 QuizController.prototype.displayQuiz = function(quiz) {
 	// remember current quiz
 	this._currentQuiz = quiz;
@@ -47,9 +61,4 @@ QuizController.prototype.displayQuiz = function(quiz) {
 	// display 3 picks
 	pickScene.displayPicks.call(pickScene, quiz._series);
 };
-
-function correctAnswer() {
-    alert("geht!");
-    $("#win").show();
-}
 

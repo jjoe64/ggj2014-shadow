@@ -5,74 +5,74 @@ var AllObjects = [
 		id: 'chair01',
 		file: "chairs.babylon",
 		name: 'Chair',
-		scaleFactor: 7,
+		scaleFactor: 11,
 		pickScaleFactor: 4,
-		offset: [0, 0, 0],
+		offset: [10, 0, -5],
 		pickOffset: [0, 0, 0]
 	}, {
 		id: 'chair02',
 		file: "chairs.babylon",
 		name: 'Chair',
-		scaleFactor: 7,
+		scaleFactor: 9,
 		pickScaleFactor: 4,
-		offset: [0, 0, 0],
+		offset: [10, 0, -5],
 		pickOffset: [0, 0, 0]
 	}, {
 		id: 'chair03',
 		file: "chairs.babylon",
 		name: 'Chair',
-		scaleFactor: 7,
+		scaleFactor: 10,
 		pickScaleFactor: 4,
-		offset: [0, 0, 0],
+		offset: [15, 0, -4],
 		pickOffset: [0, 0, 0]
 	}, {
 		id: 'tree01',
 		file: "trees.babylon",
 		name: 'Chair',
-		scaleFactor: 3,
+		scaleFactor: 2,
 		pickScaleFactor: 1,
-		offset: [0, 0, 0],
+		offset: [10, 0, -2],
 		pickOffset: [0, -2.7, 0]
 	}, {
 		id: 'tree02',
 		file: "trees.babylon",
 		name: 'Chair',
-		scaleFactor: 3,
+		scaleFactor: 1.6,
 		pickScaleFactor: 1,
-		offset: [0, 0, 0],
+		offset: [14, 0, -5],
 		pickOffset: [0, -2.8, 0]
 	}, {
 		id: 'tree03',
 		file: "trees.babylon",
 		name: 'Chair',
-		scaleFactor: 3,
+		scaleFactor: 1,
 		pickScaleFactor: 0.5,
-		offset: [0, 0, 0],
+		offset: [15, 0, 0],
 		pickOffset: [0, -5, 0]
 	}, {
 		id: 'animal01',
 		file: "animals.babylon",
 		name: 'Chair',
-		scaleFactor: 7,
-		pickScaleFactor: 2,
-		offset: [0, 0, 0],
-		pickOffset: [0, 0, 0]
+		scaleFactor: 10,
+		pickScaleFactor: 4,
+		offset: [10, 0, -4],
+		pickOffset: [0, 2, -3]
 	}, {
 		id: 'animal02',
 		file: "animals.babylon",
 		name: 'Chair',
-		scaleFactor: 7,
-		pickScaleFactor: 2,
-		offset: [0, 0, 0],
-		pickOffset: [0, 0, 0]
+		scaleFactor: 10,
+		pickScaleFactor: 6,
+		offset: [12, 0, 0],
+		pickOffset: [0, -3, 0]
 	}, {
 		id: 'animal03',
 		file: "animals.babylon",
 		name: 'Chair',
-		scaleFactor: 7,
-		pickScaleFactor: 2,
-		offset: [0, 0, 0],
-		pickOffset: [0, 0, 0]
+		scaleFactor: 9,
+		pickScaleFactor: 4,
+		offset: [6, 0, 0],
+		pickOffset: [0, 1, 0]
 	}
 ];
 

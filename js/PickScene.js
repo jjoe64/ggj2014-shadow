@@ -65,7 +65,7 @@ PickScene.prototype.setupScene = function() {
     });
     
 	// Attach the camera to the scene
-	scene.activeCamera.attachControl(this.canvas);
+	//scene.activeCamera.attachControl(this.canvas);
 
 
 	// Once the scene is loaded, just register a render loop to render it
@@ -91,6 +91,7 @@ PickScene.prototype.displayPicks = function(series) {
 		newMeshes[0].scaling.x *= series[0].pickScaleFactor;
 		newMeshes[0].scaling.y *= series[0].pickScaleFactor;
 		newMeshes[0].scaling.z *= series[0].pickScaleFactor;
+
 	});
     
 	BABYLON.SceneLoader.ImportMesh(series[1].id, "assets/models/", series[1].file, this.scene, function (newMeshes, particleSystems) {
