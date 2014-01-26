@@ -24,8 +24,8 @@ QuizController.prototype.choose = function(number) {
 			$("#scoreCount").text(parseInt($("#scoreCount").text())+1)
 			
 			this.multiplayer.addScore();
-
-			$(".win").clone().appendTo("body").show().fadeOut(4000);
+			$('.activeWinFail').remove();
+			$(".win").clone().addClass('activeWinFail').appendTo("body").show().fadeOut(2000);
 			var winSound = new Audio('assets/sounds/win2.wav');
 			winSound.volume = 0.5;
             winSound.addEventListener('ended', function() {
@@ -36,7 +36,8 @@ QuizController.prototype.choose = function(number) {
 			//alert("YES, next quiz loading ...");
 			this.nextQuiz();
 		} else {
-			$(".fail").clone().appendTo("body").show().fadeOut(4000);
+			$('.activeWinFail').remove();
+			$(".fail").clone().addClass('activeWinFail').appendTo("body").show().fadeOut(2000);
 			var failSound = new Audio('assets/sounds/fail2.wav');
 			failSound.volume = 0.5;
 			failSound.play();
