@@ -81,8 +81,11 @@
         <p><button class="btn btn-success playAgain">Play again!</button></p>
     </div>
     
-    <button id="btnReady" disabled="disabled">I'm ready</button>
-
+    <div class="alert alert-info winfail" id="mode-select">
+		 <button id="btnSingleplayer">Play (Singleplayer)</button>
+		 <button id="btnReady" disabled="disabled">I'm ready (Multiplayer)</button>
+	</div>
+	
     <script src="libs/jquery-2.1.0.min.js"></script>
 
     <!-- jquery from CDN 
@@ -113,12 +116,23 @@
                     myAudio.pause();
 					});
 
+					// singleplayer
+					$('#btnSingleplayer').click(function() {
+						quizController.playSingleplayer();
+						$('#btnSingleplayer').attr('disabled', true);
+						$('#btnReady').attr('disabled', true);
+					});
+					
 					// multiplayer
 					quizController.multiplayer.connect();
 					$('#btnReady').click(function() {
 						quizController.multiplayer.ready();
+						$('#btnSingleplayer').attr('disabled', true);
 						$('#btnReady').attr('disabled', true);
 					});
+					
+					// show mode select screen
+					$("#mode-select").show();
         });
 
     </script>

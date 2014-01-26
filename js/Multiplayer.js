@@ -2,7 +2,7 @@
 
 var Multiplayer = function() {};
 Multiplayer.prototype.connect = function() {
-	this.socket = io.connect('http://10.1.0.54:8081');
+	this.socket = io.connect('http://83.169.37.67:8081');
 	this.socket.on('connect', function () {
 		console.log("connected");
 		$('#btnReady').attr('disabled', false);

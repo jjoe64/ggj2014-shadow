@@ -90,6 +90,11 @@ QuizController.prototype.updateCountdownCounter = function() {
 	}
 }
 
+QuizController.prototype.playSingleplayer = function() {
+	this.nextQuiz();
+	this.startGameCountdown(30);
+};
+
 function restartGame() {
 	location.reload();
 }
